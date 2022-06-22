@@ -58,7 +58,7 @@ EOH
                                                 name = "pxd"
                                                 options {
                                                         io_priority = "high"
-                                                        size = 10
+                                                        size = 25
                                                         repl = 2
                                                 }
                                         }
