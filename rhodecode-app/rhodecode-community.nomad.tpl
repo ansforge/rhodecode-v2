@@ -243,10 +243,10 @@ rc_cache.repo_object.backend = dogpile.cache.rc.redis_msgpack
 
 ; cache auto-expires after N seconds
 ; Examples: 86400 (1Day), 604800 (7Days), 1209600 (14Days), 2592000 (30days), 7776000 (90Days)
-rc_cache.repo_object.expiration_time = 2592000
+rc_cache.repo_object.expiration_time = 86400
 
 ; redis_expiration_time needs to be greater then expiration_time
-rc_cache.repo_object.arguments.redis_expiration_time = 3592000
+rc_cache.repo_object.arguments.redis_expiration_time = 100000
 
 rc_cache.repo_object.arguments.host = {{ range service "rhodecode-redis" }}{{ .Address }}{{ end }}
 rc_cache.repo_object.arguments.port = {{ range service "rhodecode-redis" }}{{ .Port }}{{ end }}
@@ -400,7 +400,7 @@ cache_dir = /var/opt/rhodecode_data
 rc_cache.sql_cache_short.backend = dogpile.cache.rc.memory_lru
 rc_cache.sql_cache_short.expiration_time = 30
 rc_cache.cache_repo_longterm.backend = dogpile.cache.rc.memory_lru
-rc_cache.cache_repo_longterm.expiration_time = 2592000
+rc_cache.cache_repo_longterm.expiration_time = 172800
 rc_cache.cache_repo_longterm.max_size = 10000
 rc_cache.cache_perms.backend = dogpile.cache.rc.redis
 rc_cache.cache_perms.expiration_time = 300
@@ -410,7 +410,7 @@ rc_cache.cache_perms.arguments.port = {{ range service "rhodecode-redis" }}{{ .P
 rc_cache.cache_perms.arguments.db = 0
 rc_cache.cache_perms.arguments.socket_timeout = 30
 rc_cache.cache_repo.backend = dogpile.cache.rc.redis
-rc_cache.cache_repo.expiration_time = 2592000
+rc_cache.cache_repo.expiration_time = 86400
 rc_cache.cache_repo.arguments.host = {{ range service "rhodecode-redis" }}{{ .Address }}{{ end }}
 rc_cache.cache_repo.arguments.port = {{ range service "rhodecode-redis" }}{{ .Port }}{{ end }}
 rc_cache.cache_repo.arguments.db = 1
@@ -427,7 +427,7 @@ beaker.session.key = rhodecode
 beaker.session.secret = production-rc-uytcxaz
 
 beaker.session.lock_dir = /data_ramdisk/lock
-beaker.session.timeout = 2592000
+beaker.session.timeout = 86400
 beaker.session.httponly = true
 beaker.session.secure = false
 ; #############################
