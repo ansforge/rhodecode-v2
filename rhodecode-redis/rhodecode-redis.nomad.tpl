@@ -66,7 +66,7 @@ job "rhodecode-redis" {
                         }
                         resources {
                                 cpu    = 300
-                                memory = 1024
+                                memory = 2048
                         }
                         service {
                                 name = "$\u007BNOMAD_JOB_NAME\u007D"
