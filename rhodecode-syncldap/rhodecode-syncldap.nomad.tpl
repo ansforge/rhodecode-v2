@@ -19,9 +19,9 @@ job "rhodecode-syncldap" {
         data = <<EOH
 LDAP_BIND_DN="{{with secret "forge/rhodecode/ldap"}}{{.Data.data.bind_dn}}{{end}}"
 LDAP_BIND_PASSWORD="{{with secret "forge/rhodecode/ldap"}}{{.Data.data.bind_password}}{{end}}"
-LDAP_URL="{{with secret "forge/rhodecode/ldap"}}{{.Data.data.url}}{{end}}"
 RHODECODE_AUTH_TOKEN="{{with secret "forge/rhodecode/api"}}{{.Data.data.auth_token}}{{end}}"
 {{range service ("rhodecode-http") }}RHODECODE_API_URL="http://{{.Address}}:{{.Port}}/_admin/api"{{end}}
+{{range service ("ldap-forge") }}LDAP_URL="ldap://{{.Address}}:389"{{end}}
         EOH
         destination = "secrets/file.env"
         change_mode = "restart"
