@@ -2,7 +2,7 @@ job "rhodecode-syncldap" {
   datacenters = ["${datacenter}"]
   type = "batch"
   periodic {
-    cron             = "*/15 * * * * *"
+    cron             = "0 * * * * *"
     prohibit_overlap = true
   }
   vault {
