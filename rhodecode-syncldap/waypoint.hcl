@@ -20,8 +20,17 @@ app "rhodecode-syncldap" {
             tag   = var.tag
 			      disable_entrypoint = true
         }
+        registry {
+          use "docker" {
+              image = "${var.registry_url}/${var.image}"
+              tag = var.tag
+              insecure = true
+              username = var.registry_username
+              password = var.registry_password
+            }
+        }
     }
-  
+
     deploy{
         use "nomad-jobspec" {
             jobspec = templatefile("${path.app}/rhodecode-syncldap.nomad.tpl", {
@@ -46,4 +55,24 @@ variable "image" {
 variable "tag" {
     type    = string
     default = "1.0.0"
+}
+
+variable "registry_url" {
+  type = string
+  default = ""
+  env = ["REGISTRY"]
+}
+
+variable "registry_username" {
+  type    = string
+  default = ""
+  env     = ["REGISTRY_USER"]
+  # sensitive = true
+}
+
+variable "registry_password" {
+  type    = string
+  default = ""
+  env     = ["REGISTRY_PASS"]
+  # sensitive = true
 }
