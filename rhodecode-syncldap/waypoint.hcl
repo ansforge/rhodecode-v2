@@ -4,6 +4,7 @@ labels = { "domaine" = "forge" }
 
 runner {
     enabled = true
+    profile = "ans-batch-runner-profile"
     data_source "git" {
         url  = "https://github.com/ansforge/rhodecode-v2.git"
         ref  = "var.datacenter"
@@ -13,7 +14,9 @@ runner {
 }
 
 app "rhodecode-syncldap" {
-
+    runner {
+        profile = "ans-batch-runner-profile"
+    }
     build {
         use "docker-pull" {
             image = var.image
@@ -67,12 +70,10 @@ variable "registry_username" {
   type    = string
   default = ""
   env     = ["REGISTRY_USER"]
-  # sensitive = true
 }
 
 variable "registry_password" {
   type    = string
   default = ""
   env     = ["REGISTRY_PASS"]
-  # sensitive = true
 }
