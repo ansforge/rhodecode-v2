@@ -619,7 +619,7 @@ EOT
 				mount {
 					type = "volume"
 					target = "/var/opt/rhodecode_data"
-					source = "rhodecode-data"
+					source = "rhodecode-data2"
 					readonly = false
 					volume_options {
 						no_copy = false
