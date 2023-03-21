@@ -28,6 +28,8 @@ app "rhodecode-app" {
 				datacenter = var.datacenter
 				image = var.image
 				tag = var.tag
+				image2 = var.image2
+				tag2 = var.tag2
 				cpu = var.cpu
 				memory = var.memory
 				extensions_url = var.extensions_url
@@ -65,4 +67,14 @@ variable "image" {
 variable "tag" {
     type    = string
     default = "4.26.0"
+}
+
+variable "image2" {
+    type    = string
+    default = "ans/rhodecode-redis"
+}
+
+variable "tag2" {
+    type    = string
+    default = "6.2.6"
 }
