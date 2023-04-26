@@ -46,7 +46,7 @@ variable "datacenter" {
 
 variable "cpu" {
     type    = string
-    default = "1024"
+    default = "2048"
 }
 
 variable "memory" {
