@@ -4,9 +4,10 @@ labels = { "domaine" = "forge" }
 
 runner {
     enabled = true
+    profile = "${workspace.name}"
     data_source "git" {
         url  = "https://github.com/ansforge/rhodecode-v2.git"
-        ref  = "var.datacenter"
+        ref  = "henix_docker_platform_pfcpx"
 		path = "rhodecode-tools/"
 		ignore_changes_outside_path = true
     }
@@ -15,10 +16,10 @@ runner {
 app "rhodecode-tools" {
 
     build {
-        use "docker-pull" {
+        use "docker-ref" {
             image = var.image
             tag   = var.tag
-			      disable_entrypoint = true
+		    # disable_entrypoint = true
         }
     }
   
@@ -35,8 +36,18 @@ app "rhodecode-tools" {
 
 variable "datacenter" {
     type    = string
-    default = "dc1"
+    default = "henix_docker_platform_pfcpx"
+    # 
+    env = ["NOMAD_DATACENTER"]
 }
+
+variable "nomad_namespace" {
+    type = string
+    default = "default"
+    
+    env = ["NOMAD_NAMESPACE"]
+}
+#
 
 variable "image" {
     type    = string

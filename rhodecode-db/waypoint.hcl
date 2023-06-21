@@ -4,30 +4,31 @@ labels = { "domaine" = "forge" }
 
 runner {
     enabled = true
-    data_source "git" {
+    profile = "${workspace.name}"
+        data_source "git" {
         url  = "https://github.com/ansforge/rhodecode-v2.git"
-        ref  = "var.datacenter"
-	path = "rhodecode-db/"
-	ignore_changes_outside_path = true
+        ref  = "henix_docker_platform_pfcpx"
+	    path = "rhodecode-db/"
+	    ignore_changes_outside_path = true
     }
 }
 
 app "rhodecode-db" {
 
     build {
-        use "docker-pull" {
+        use "docker-ref" {
             image = var.image
             tag   = var.tag
-	    disable_entrypoint = true
+	        # disable_entrypoint = true
         }
     }
   
     deploy{
         use "nomad-jobspec" {
             jobspec = templatefile("${path.app}/rhodecode-postgres.nomad.tpl", {
-            	datacenter = var.datacenter
-		image = var.image
-		tag   = var.tag
+            datacenter = var.datacenter
+            image = var.image
+            tag   = var.tag
             })
         }
     }
@@ -35,8 +36,18 @@ app "rhodecode-db" {
 
 variable "datacenter" {
     type    = string
-    default = "dc1"
+    default = "henix_docker_platform_pfcpx"
+    # 
+    env = ["NOMAD_DATACENTER"]
 }
+
+variable "nomad_namespace" {
+    type = string
+    default = "default"
+    
+    env = ["NOMAD_NAMESPACE"]
+}
+#
 
 variable "image" {
     type    = string
