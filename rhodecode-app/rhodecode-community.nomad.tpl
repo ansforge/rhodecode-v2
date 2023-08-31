@@ -67,6 +67,10 @@ job "rhodecode-community" {
 			}
 		}
 		task "rhodecode" {
+
+			# log-shipper
+			leader = true 
+			
 			artifact {
 				source = "${extensions_url}"
 				destination = "local"
@@ -696,10 +700,6 @@ EOT
 		}
 		task "rhodecode-celery" {
 				driver = "docker"
-
-				# log-shipper
-				leader = true 
-			
 				template {
 		data = <<EOT
 RC_APP_TYPE="rhodecode_celery"
@@ -1089,10 +1089,10 @@ EOT
         task "log-shipper" {
             driver = "docker"
             restart {
-                    interval = "3m"
-                    attempts = 5
-                    delay    = "15s"
-                    mode     = "delay"
+				interval = "3m"
+				attempts = 5
+				delay    = "15s"
+				mode     = "delay"
             }
             meta {
                 INSTANCE = "$\u007BNOMAD_ALLOC_NAME\u007D"
