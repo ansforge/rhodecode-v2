@@ -67,6 +67,10 @@ job "rhodecode-community" {
 			}
 		}
 		task "rhodecode" {
+
+			# log-shipper
+			leader = true 
+			
 			artifact {
 				source = "${extensions_url}"
 				destination = "local"
@@ -1081,6 +1085,35 @@ EOT
 				}
 		}
 
+        # log-shipper
+        task "log-shipper" {
+            driver = "docker"
+            restart {
+				interval = "3m"
+				attempts = 5
+				delay    = "15s"
+				mode     = "delay"
+            }
+            meta {
+                INSTANCE = "$\u007BNOMAD_ALLOC_NAME\u007D"
+            }
+            template {
+                data = <<EOH
+REDIS_HOSTS = {{ range service "PileELK-redis" }}{{ .Address }}:{{ .Port }}{{ end }}
+PILE_ELK_APPLICATION = RHODECODE 
+EOH
+                destination = "local/file.env"
+                change_mode = "restart"
+                env = true
+            }
+            config {
+                image = "ans/nomad-filebeat:8.2.3-2.0"
+            }
+            resources {
+                cpu    = 100
+                memory = 150
+            }
+        } #end log-shipper 
+
 	}
 }
-
