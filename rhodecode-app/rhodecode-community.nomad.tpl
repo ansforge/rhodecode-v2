@@ -1064,7 +1064,7 @@ EOT
 						}
 				}
 				resources {
-						cpu    = 2048
+						cpu    = 1024
 						memory = 2048
 				}
 				service {
