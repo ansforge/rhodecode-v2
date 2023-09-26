@@ -27,10 +27,10 @@ echo "Démarrage du script de sauvegarde de Rhodecode"
 DATE=$(date +"%Y%m%d")
 
 # Dossier où sauvegarder les backups
-BACKUP_DIR="/var/BACKUP/RHODECODE"
+BACKUP_DIR="/var/backup/RHODECODE"
 
 # Dossier de sauvegarde de la table user_logs
-BACKUP_USER_LOGS_DIR="/var/BACKUP/RHODECODE_USER_LOGS"
+BACKUP_USER_LOGS_DIR="/var/backup/RHODECODE_USER_LOGS"
 
 # Commande NOMAD
 #NOMAD=/usr/local/bin/nomad
