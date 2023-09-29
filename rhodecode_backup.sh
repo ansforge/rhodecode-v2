@@ -4,7 +4,7 @@ echo "Démarrage du script de sauvegarde de Rhodecode"
 # Nom du script     : rhodecode-backup.sh
 # Auteur            : E.RIEGEL (QM HENIX)
 # Date de Création  : 15/02/2022
-# Version           : 0.0.4
+# Version           : 0.0.5
 # Descritpion       : Script permettant la sauvegarde de la BDD de RhodeCode et de sauvegarder les repos de l'ANS
 #
 # Historique des mises à jour :
@@ -17,7 +17,9 @@ echo "Démarrage du script de sauvegarde de Rhodecode"
 #-----------+--------+-------------+------------------------------------------------------
 #  0.0.3    | 11/05/22 | E.RIEGEL     | Adaptation du script pour la version multi-conteneurs de Rhodecode
 #-----------+--------+-------------+------------------------------------------------------
-#  0.0.4    | 21/09/23 | Y.ETRILLARD      | Ajout -task dans la commande nomad exec de rhodecode-postgres
+#  0.0.4    | 21/09/23 | Y.ETRILLARD  | Ajout -task dans la commande nomad exec de rhodecode-postgres
+#-----------+--------+-------------+------------------------------------------------------
+#  0.0.5    | 29/09/23 | Y.ETRILLARD  | Rétention à 3 jours
 #-----------+--------+-------------+------------------------------------------------------
 ###############################################################################################
 
@@ -47,7 +49,7 @@ BACKUP_USER_LOGS_FILENAME="BACKUP_USER_LOGS_${DATE}.tar.gz"
 
 
 # Nombre de jours à garder les dossiers (seront effacés après X jours)
-RETENTION=1
+RETENTION=3
 
 # ---- NE RIEN MODIFIER SOUS CETTE LIGNE ------------------------------------------
 #
