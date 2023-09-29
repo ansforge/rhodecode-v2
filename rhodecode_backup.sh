@@ -47,7 +47,7 @@ BACKUP_USER_LOGS_FILENAME="BACKUP_USER_LOGS_${DATE}.tar.gz"
 
 
 # Nombre de jours à garder les dossiers (seront effacés après X jours)
-RETENTION=1
+RETENTION=3
 
 # ---- NE RIEN MODIFIER SOUS CETTE LIGNE ------------------------------------------
 #
