@@ -128,7 +128,7 @@ use = egg:gunicorn#main
 ; than 8-10 unless for really big deployments .e.g 700-1000 users.
 ; `instance_id = *` must be set in the [app:main] section below (which is the default)
 ; when using more than 1 worker.
-workers = 3
+workers = 5
 
 ; Gunicorn access log level
 loglevel = info
