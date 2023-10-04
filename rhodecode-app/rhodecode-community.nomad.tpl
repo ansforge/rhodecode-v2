@@ -333,7 +333,7 @@ port = 10020
 ; GUNICORN APPLICATION SERVER
 ; ###########################
 use = egg:gunicorn#main
-workers = 2
+workers = 5
 loglevel = info
 proc_name = gunicorn-web-1
 worker_class = gevent
@@ -737,7 +737,7 @@ port = 10020
 ; GUNICORN APPLICATION SERVER
 ; ###########################
 use = egg:gunicorn#main
-workers = 2
+workers = 5
 loglevel = info
 proc_name = gunicorn-web-1
 worker_class = gevent
