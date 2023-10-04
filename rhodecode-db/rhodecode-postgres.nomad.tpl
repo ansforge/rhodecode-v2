@@ -75,7 +75,7 @@ EOH
                         }
                 }
       resources {
-        cpu    = 1200
+        cpu    = 2048
         memory = 4096
       }
       service {
