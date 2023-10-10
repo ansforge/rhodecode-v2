@@ -46,12 +46,12 @@ variable "datacenter" {
 
 variable "cpu" {
     type    = string
-    default = "3072"
+    default = "7000"
 }
 
 variable "memory" {
     type    = string
-    default = "5120"
+    default = "6000"
 }
 
 variable "extensions_url" {
