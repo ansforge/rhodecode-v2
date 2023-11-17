@@ -107,6 +107,7 @@ DB_UPGRADE=1
 SETUP_APP=0
 MAIN_INI_PATH="/secrets/rhodecode.optimized.ini"
 EXTERNAL_HOSTNAME={{ with secret "forge/rhodecode/app" }}{{ .Data.data.rc_external_hostname }}{{end}}
+EXTERNAL_VIP_HOSTNAME={{ with secret "forge/rhodecode/app" }}{{ .Data.data.rc_external_vip_hostname }}{{end}}
 EOT
 						destination="local/rc.env"
 						env = true
@@ -663,7 +664,10 @@ EOT
 			}
 			service {
 				name = "$\u007BNOMAD_TASK_NAME\u007D-http"
-				tags = ["urlprefix-$\u007BEXTERNAL_HOSTNAME\u007D"]
+				tags = [
+					"urlprefix-$${EXTERNAL_HOSTNAME}",
+					"urlprefix-$${EXTERNAL_VIP_HOSTNAME}"
+					]
 				port = "rhodecode"
 				check {
 					name         = "rhodecode-alive"

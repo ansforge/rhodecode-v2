@@ -30,7 +30,7 @@ RHODECODE_AUTH_TOKEN="{{with secret "forge/rhodecode/api"}}{{.Data.data.auth_tok
         destination = "secrets/file.env"
         change_mode = "restart"
         env         = true
-     }
+      }
       resources {
         cpu    = 100
         memory = 64
