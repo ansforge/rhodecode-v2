@@ -76,7 +76,7 @@ EOH
                 }
       resources {
         cpu    = 600
-        memory = 1024
+        memory = 4096
       }
       service {
         name = "$\u007BNOMAD_JOB_NAME\u007D"
